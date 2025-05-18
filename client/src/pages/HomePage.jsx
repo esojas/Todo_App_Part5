@@ -1,16 +1,16 @@
 import React from "react";
-import NavbarComponent from "../components/NavbarComponent";
 import AddTaskComponent from "../components/AddTaskComponent";
 import MyTaskComponent from "../components/MyTaskComponent";
+import NavbarComponent from "../components/NavbarComponent";
 
 const HomePage = () => {
   return (
     <div className="h-full">
-      {/* navbar component */}
+      {/* navbar */}
       <NavbarComponent />
 
       {/* task container */}
-      <div className="flex w-full h-full gap-8 pt-20 pb-4 px-6">
+      <div className="flex w-full h-full gap-8 py-6 px-6">
         {/* add task component */}
         <AddTaskComponent />
 

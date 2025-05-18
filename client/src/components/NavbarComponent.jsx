@@ -1,35 +1,24 @@
 import React, { useEffect, useState } from "react";
 import LogoImg from "../assets/logo.png";
-import { logout } from "../services/authService";
-import { auth } from "../firebase";
-import { onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router";
 
 const NavbarComponent = () => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-    });
-    return () => unsubscribe();
-  }, []);
-
-  const handleLogout = async () => {
-    await logout();
-    navigate("/signin");
-  };
+  const handleLogout = async () => {};
 
   return (
-    <nav className="flex w-full justify-between items-center bg-green-100 shadow-md py-3 px-10 fixed">
+    <nav className="flex w-full justify-between items-center bg-green-100 shadow-md py-3 px-10">
       {/* Logo */}
-      <div className="flex gap-1 justify-center items-center cursor-pointer">
-        <img src={LogoImg} alt="logo-image" className="h-5 w-8" />
-        <p className="text-lg font-semibold text-green-600 hover:text-green-700 transition ease-in-out">
-          ToDoSome
-        </p>
-      </div>
+      <a href="/">
+        <div className="flex gap-1 justify-center items-center cursor-pointer">
+          <img src={LogoImg} alt="logo-image" className="h-6 w-6" />
+          <p className="text-lg font-semibold text-green-600 hover:text-green-700 transition ease-in-out">
+            ToDoSome
+          </p>
+        </div>
+      </a>
 
       {/* Navigation Menu */}
       <div className="flex gap-6 justify-center items-center text-green-900 font-semibold">

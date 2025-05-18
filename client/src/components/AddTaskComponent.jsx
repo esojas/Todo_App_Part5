@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { addTaskToFirestore } from "../services/taskService";
 import toast from "react-hot-toast";
 
 const AddTaskComponent = () => {
@@ -7,33 +6,7 @@ const AddTaskComponent = () => {
   const [taskDesc, setTaskDesc] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleAddTask = async (e) => {
-    e.preventDefault();
-    if (!taskTitle.trim() || !taskDesc.trim()) {
-      toast.error("Task title and description cannot be empty!");
-      return;
-    }
-
-    setLoading(true);
-
-    try {
-      const newTask = {
-        title: taskTitle,
-        description: taskDesc,
-        createdAt: new Date().toISOString(),
-      };
-
-      await addTaskToFirestore(newTask);
-
-      setTaskTitle("");
-      setTaskDesc("");
-      toast.success("Task added successfully!");
-    } catch (err) {
-      toast.error("Failed to add task. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
+  const handleAddTask = async (e) => {};
 
   return (
     <>

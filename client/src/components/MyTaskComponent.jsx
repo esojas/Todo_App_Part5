@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { MdDeleteOutline } from "react-icons/md";
 import { FaRegEdit } from "react-icons/fa";
-import {
-  getAllTasks,
-  updateTaskInFirestore,
-  deleteTaskFromFirestore,
-} from "../services/taskService";
 import toast from "react-hot-toast";
 
 const MyTaskComponent = () => {
@@ -15,52 +10,13 @@ const MyTaskComponent = () => {
   const [updatedTitle, setUpdatedTitle] = useState("");
   const [updatedDescription, setUpdatedDescription] = useState("");
 
-  useEffect(() => {
-    fetchTasks();
-  }, []);
+  const fetchTasks = async () => {};
 
-  const fetchTasks = async () => {
-    try {
-      const tasksData = await getAllTasks();
-      setTasks(tasksData);
-    } catch (error) {
-      toast.error("Failed to load tasks.");
-    } finally {
-      setLoading(false);
-    }
-  };
+  const handleEdit = (task) => {};
 
-  const handleEdit = (task) => {
-    setSelectedTask(task);
-    setUpdatedTitle(task.title);
-    setUpdatedDescription(task.description);
-    document.getElementById("update-modal").showModal();
-  };
+  const handleUpdateTask = async () => {};
 
-  const handleUpdateTask = async () => {
-    if (!selectedTask) return;
-    try {
-      await updateTaskInFirestore(selectedTask.id, {
-        title: updatedTitle,
-        description: updatedDescription,
-      });
-      toast.success("Task updated successfully!");
-      fetchTasks();
-      document.getElementById("update-modal").close();
-    } catch (error) {
-      toast.error("Failed to update task.");
-    }
-  };
-
-  const handleDelete = async (taskId) => {
-    try {
-      await deleteTaskFromFirestore(taskId);
-      toast.success("Task deleted successfully!");
-      fetchTasks();
-    } catch (error) {
-      toast.error("Failed to delete task.");
-    }
-  };
+  const handleDelete = async (taskId) => {};
 
   return (
     <div>
@@ -99,7 +55,7 @@ const MyTaskComponent = () => {
           </div>
         ))}
 
-      {/* Modal Popup for Update Task */}
+      {/* Modal Popup for Update Task (DaisyUI component) */}
       <dialog id="update-modal" className="modal">
         <div className="modal-box">
           <h3 className="font-bold text-lg">Update Task</h3>
