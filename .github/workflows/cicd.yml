@@ -47,12 +47,12 @@ jobs:
 
       - name: Stop and Remove Old Containers
         run: |
-          docker-compose down || true
-          docker system prune -f
+          echo "${{ secrets.PASSWORD_SERVER }}" | sudo -S docker-compose down || true
+          echo "${{ secrets.PASSWORD_SERVER }}" | sudo -S docker system prune -f
 
       - name: Run New Containers
         run: |
-          docker-compose up -d
+          echo "${{ secrets.PASSWORD_SERVER }}" | sudo -S docker-compose up -d
         env:
           PORT: ${{ secrets.PORT }}
           CONNECTION_URL: ${{ secrets.CONNECTION_URL }}
@@ -63,5 +63,5 @@ jobs:
 
       - name: Add Containers to Tunnel
         run: |
-          docker network connect ${{ secrets.TUNNEL_NAME }} todolist-backend || true
-          docker network connect ${{ secrets.TUNNEL_NAME }} todolist-frontend || true
+          echo "${{ secrets.PASSWORD_SERVER }}" | sudo -S docker network connect ${{ secrets.TUNNEL_NAME }} todolist-backend || true
+          echo "${{ secrets.PASSWORD_SERVER }}" | sudo -S docker network connect ${{ secrets.TUNNEL_NAME }} todolist-frontend || true
