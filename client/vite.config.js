@@ -3,17 +3,12 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => {
+export default defineConfig(() => {
   return {
     server: {
       proxy: {
         "/service": {
-          target: mode === "development"
-            ? "http://localhost:5000"
-            : "https://e2425-wads-project.csbihub.id/group22/server",
-          changeOrigin: true,
-          secure: mode !== "development",
-          ws: true,
+          target: "https://e2425-wads-project.csbihub.id/group22/server",
         },
       },
     },
