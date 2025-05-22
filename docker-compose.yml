@@ -15,8 +15,6 @@ services:
       EMAIL_PASSWORD: ${EMAIL_PASSWORD}
     ports:
       - "3002:3002"
-    networks:
-      - csbiweb-tunnel
 
   frontend:
     image: juwono136/todolist-frontend:latest
@@ -27,12 +25,6 @@ services:
       - backend
     ports:
       - "3001:3001"
-    networks:
-      - csbiweb-tunnel
 
 volumes:
   mongodb_data:
-
-networks:
-  csbiweb-tunnel:
-    external: true
