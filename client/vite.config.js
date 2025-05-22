@@ -8,7 +8,7 @@ export default defineConfig(() => {
     server: {
       proxy: {
         "/service": {
-          target: "https://e2425-wads-project.csbihub.id/group22/server",
+          target: "https://e2425-wads-project.csbihub.id/usergc1/server",
         },
       },
     },
