@@ -14,7 +14,7 @@ services:
       EMAIL_USER: ${EMAIL_USER}
       EMAIL_PASSWORD: ${EMAIL_PASSWORD}
     ports:
-      - "3042:3042"
+      - "3002:3002"
     networks:
       - csbiweb-tunnel
 
@@ -26,7 +26,7 @@ services:
     depends_on:
       - backend
     ports:
-      - "3041:3041"
+      - "3001:3001"
     networks:
       - csbiweb-tunnel
 
