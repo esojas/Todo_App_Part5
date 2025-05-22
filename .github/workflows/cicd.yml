@@ -9,7 +9,7 @@ on:
 
 jobs:
   continuous-integration:
-    name: Build & Push Docker Images
+    name: Continuous Integration
     runs-on: ubuntu-latest
 
     steps:
@@ -30,7 +30,7 @@ jobs:
           docker push ${{ secrets.DOCKER_USERNAME }}/todolist-frontend:latest
 
   continuous-deployment:
-    name: Deploy to Self-Hosted Server
+    name: Continuous Deployment
     needs: continuous-integration
     runs-on: self-hosted
 
@@ -39,12 +39,6 @@ jobs:
         run: |
           echo "DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock" >> $GITHUB_ENV
           export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
-
-      - name: Start Docker Rootless if not running
-        run: |
-          systemctl --user start docker || true
-          sleep 3
-          docker info
 
       - name: Checkout Repository
         uses: actions/checkout@v4
