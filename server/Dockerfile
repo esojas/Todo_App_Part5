@@ -14,5 +14,9 @@ COPY . .
 # Expose the application port
 EXPOSE 3002
 
+# Use non-root user for Podman compatibility
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+USER appuser
+
 # Command to run the application
 CMD ["npm", "start"]

@@ -3,7 +3,6 @@ version: "3.8"
 services:
   backend:
     image: juwono136/todolist-backend:latest
-    pull_policy: always
     container_name: todolist-backend
     restart: always
     environment:
@@ -18,13 +17,9 @@ services:
 
   frontend:
     image: juwono136/todolist-frontend:latest
-    pull_policy: always
     container_name: todolist-frontend
     restart: always
     depends_on:
       - backend
     ports:
       - "3001:3001"
-
-volumes:
-  mongodb_data:
