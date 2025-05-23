@@ -9,14 +9,8 @@ export default defineConfig(() => {
       proxy: {
         "/service": {
           target: "https://e2425-wads-project.csbihub.id/server",
-          changeOrigin: true,
-          secure: true,
-          ws: true,
         },
       },
-      host: '0.0.0.0',
-      port: 3001,
-      allowedHosts: ['e2425-wads-project.csbihub.id']
     },
     build: {
       outDir: "dist",
