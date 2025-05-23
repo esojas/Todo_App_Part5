@@ -39,6 +39,12 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Setup Docker Rootless Environment
+        run: |
+          echo "Setting up Docker rootless env..."
+          echo "export PATH=$HOME/bin:$PATH" >> $GITHUB_ENV
+          echo "export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock" >> $GITHUB_ENV
+
       - name: Pull Latest Backend Image
         run: docker pull ${{ secrets.DOCKER_USERNAME }}/todolist-backend:latest
 
@@ -47,12 +53,12 @@ jobs:
 
       - name: Stop and Remove Old Containers
         run: |
-          docker-compose down || true
+          docker compose down || true
           docker system prune -f
 
       - name: Run New Containers
         run: |
-          docker-compose up -d
+          docker compose up -d
         env:
           PORT: ${{ secrets.PORT }}
           CONNECTION_URL: ${{ secrets.CONNECTION_URL }}
