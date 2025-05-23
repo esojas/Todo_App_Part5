@@ -14,11 +14,20 @@ const app = express();
 dotenv.config();
 
 app.use(express.json()); // Built-in body-parser for parsing JSON
-app.use(cors()); // Enable Cross-Origin Resource Sharing
+
+const corsOptions = {
+    origin: "*",
+    credentials: false,
+};
+
+app.use(cors(corsOptions)); // Enable Cross-Origin Resource Sharing
 app.use(cookieParser()); // Enable cookie parsing
 
 const CONNECTION_URL = process.env.CONNECTION_URL
 const PORT = process.env.PORT
+
+// Ensure trust for reverse proxies (e.g., Nginx or cloud hosting)
+app.set('trust proxy', true);
 
 app.use("/service/todo", todoRoute);
 app.use("/service/user", usersRoute);
