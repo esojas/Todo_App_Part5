@@ -41,20 +41,17 @@ jobs:
 
       - name: Setup Docker Rootless Environment
         run: |
-          echo "Setting up Docker rootless env..."
-          echo "export PATH=$HOME/bin:$PATH" >> $GITHUB_ENV
-          echo "export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock" >> $GITHUB_ENV
-          nohup dockerd-rootless.sh > /tmp/dockerd.log 2>&1 &
-          sleep 10
+          echo "XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR"
+          echo "DOCKER_HOST=$DOCKER_HOST"
+          ls -l $XDG_RUNTIME_DIR/docker.sock
+          docker info
 
       - name: Pull Latest Backend Image
         run: |
-          export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
           docker pull ${{ secrets.DOCKER_USERNAME }}/todolist-backend:latest
 
       - name: Pull Latest Frontend Image
         run: |
-          export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
           docker pull ${{ secrets.DOCKER_USERNAME }}/todolist-frontend:latest
 
       - name: Stop and Remove Old Containers
