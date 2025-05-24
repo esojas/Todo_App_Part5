@@ -42,8 +42,8 @@ jobs:
       - name: Setup Docker Rootless Environment
         run: |
           echo "Setting up Docker rootless env..."
-          echo "PATH=$HOME/bin:$PATH" >> $GITHUB_ENV
-          echo "DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock" >> $GITHUB_ENV
+          echo "export PATH=$HOME/bin:$PATH" >> $GITHUB_ENV
+          echo "export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock" >> $GITHUB_ENV
 
       - name: Pull Latest Backend Image
         run: |
