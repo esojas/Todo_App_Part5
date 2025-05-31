@@ -28,7 +28,7 @@ jobs:
 
       - name: Build and Push Frontend Image
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/todolist-frontend:latest ./client
+          docker build --no-cache -t ${{ secrets.DOCKER_USERNAME }}/todolist-frontend:latest ./client
           docker push ${{ secrets.DOCKER_USERNAME }}/todolist-frontend:latest
 
   continuous-deployment:

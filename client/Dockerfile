@@ -23,8 +23,8 @@ COPY client_nginx.conf /etc/nginx/conf.d/default.conf
 # Copy built app to Nginx
 COPY --from=builder /app/dist /usr/share/nginx/html
 
-# Expose the application port
-EXPOSE 3001
+# Expose the application port (replace this port with client_port you received)
+EXPOSE 3121
 
 # Command to run the application
-CMD ["/bin/sh", "-c", "envsubst '$API_URL' < /etc/nginx/conf.d/default.conf > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"]
+CMD ["nginx", "-g", "daemon off;"]
