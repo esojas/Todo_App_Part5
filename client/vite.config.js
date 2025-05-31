@@ -10,7 +10,7 @@ export default defineConfig(({ mode }) => {
         "/service": {
           target: mode === "development"
             ? "http://localhost:5000"
-            : "https://e2425-wads-project-server.csbihub.id",
+            : "e2425-wads-l4ccg2-server-jose.csbihub.id",
           changeOrigin: true,
           secure: mode !== "development",
           ws: true,
