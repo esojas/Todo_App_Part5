@@ -27,4 +27,4 @@ COPY --from=builder /app/dist /usr/share/nginx/html
 EXPOSE 3001
 
 # Command to run the application
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["/bin/sh", "-c", "envsubst '$API_URL' < /etc/nginx/conf.d/default.conf > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"]

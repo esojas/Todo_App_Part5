@@ -127,22 +127,14 @@ export const signIn = async (req, res) => {
 
         const refresh_token = createRefreshToken({ id: user._id })
 
-        const expiry = 24 * 60 * 60 * 1000 // 1 day
-
-        res.cookie('refreshtoken', refresh_token, {
-            httpOnly: true,
-            path: '/api/user/refresh_token',
-            maxAge: expiry,
-            expires: new Date(Date.now() + expiry)
-        })
-
         res.json({
             message: "Sign In successfully!",
             user: {
                 id: user._id,
                 name: user.name,
                 email: user.email
-            }
+            },
+            refresh_token
         })
 
     } catch (error) {
