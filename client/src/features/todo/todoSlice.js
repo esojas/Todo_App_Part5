@@ -6,7 +6,7 @@ export const getAllTodos = createAsyncThunk(
     'todo/getAllTodos',
     async (_, { rejectWithValue }) => {
         try {
-            const response = await axiosInstance.get('/todo/get_all');
+            const response = await axiosInstance.get('/service/todo/get_all');
             return response.data;
         } catch (error) {
             return rejectWithValue(error.response.data);
@@ -18,7 +18,7 @@ export const createTodo = createAsyncThunk(
     'todo/createTodo',
     async (todoData, { rejectWithValue }) => {
         try {
-            const response = await axiosInstance.post('/todo/add_todo', todoData);
+            const response = await axiosInstance.post('/service/todo/add_todo', todoData);
             return response.data;
         } catch (error) {
             return rejectWithValue(error.response.data);
@@ -30,7 +30,7 @@ export const updateTodo = createAsyncThunk(
     'todo/updateTodo',
     async ({ id, todoData }, { rejectWithValue }) => {
         try {
-            const response = await axiosInstance.patch(`/todo/update_todo/${id}`, todoData);
+            const response = await axiosInstance.patch(`/service/todo/update_todo/${id}`, todoData);
             return response.data;
         } catch (error) {
             return rejectWithValue(error.response.data);
@@ -42,7 +42,7 @@ export const deleteTodo = createAsyncThunk(
     'todo/deleteTodo',
     async (id, { rejectWithValue }) => {
         try {
-            await axiosInstance.delete(`/todo/delete_todo/${id}`);
+            await axiosInstance.delete(`/service/todo/delete_todo/${id}`);
             return id;
         } catch (error) {
             return rejectWithValue(error.response.data);
