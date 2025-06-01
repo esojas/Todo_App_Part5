@@ -6,7 +6,7 @@ export const signup = createAsyncThunk(
     'auth/signup',
     async (userData, { rejectWithValue }) => {
         try {
-            const response = await axios.post('/user/signup', userData)
+            const response = await axios.post('/service/user/signup', userData)
             return response.data
         } catch (error) {
             return rejectWithValue(error.response?.data?.message || 'Signup failed')
@@ -19,7 +19,7 @@ export const activateEmail = createAsyncThunk(
     'auth/activateEmail',
     async (activationToken, { rejectWithValue }) => {
         try {
-            const response = await axios.post('/user/activation', { activation_token: activationToken })
+            const response = await axios.post('/service/user/activation', { activation_token: activationToken })
             return response.data
         } catch (error) {
             return rejectWithValue(error.response?.data?.message || 'Activation failed')
@@ -32,7 +32,7 @@ export const signin = createAsyncThunk(
     'auth/signin',
     async (userData, { rejectWithValue }) => {
         try {
-            const response = await axios.post('/user/signin', userData)
+            const response = await axios.post('/service/user/signin', userData)
             if (response.data.refresh_token) {
                 localStorage.setItem('refresh_token', response.data.refresh_token)
             }
@@ -52,7 +52,7 @@ export const getUserInfo = createAsyncThunk(
             if (!token) {
                 throw new Error('No token found')
             }
-            const response = await axios.get('/user/user-infor', {
+            const response = await axios.get('/service/user/user-infor', {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
